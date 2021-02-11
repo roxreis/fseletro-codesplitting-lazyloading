@@ -2,7 +2,7 @@
 
 <strong>
 Necessario entrar na pasta frontend e depois backend e rodar o comando 'npm i' em ambas
-</strong>
+</strong><br>
 
 <p>
 Arquivo .sql dentro da pasta backend
