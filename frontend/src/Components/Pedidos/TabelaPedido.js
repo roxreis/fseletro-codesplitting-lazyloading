@@ -1,0 +1,70 @@
+import React, { useState, useEffect } from 'react';
+import '../../css/style.css';
+
+
+const ListPedidos = () => {
+    const [pedidos, setPed] = useState([]);
+
+    useEffect(() => {
+        async function fectchData() {
+            const url = await fetch("http://localhost:1900/pedidos");
+            setPed(await url.json());
+        }
+        fectchData();
+    }, [])
+
+
+    return (
+        <> 
+
+                        <div className="table-wrapper-scroll-y my-custom-scrollbar overflow-auto div-table-pedidos" >
+                        <div class="alert alert-primary" role="alert">
+                            Dados vindos do banco!
+                        </div> 
+                            <table className="table table-bordered table-hover display dataTable dtr-inline table-pedidos ">
+                          
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Numero Pedido</th>
+                                        <th scope="col">Id Cliente</th>
+                                        <th scope="col">Id Produto</th>
+                                        <th scope="col">Nome Produto</th>
+                                        <th scope="col">Valor Unitario</th>
+                                        <th scope="col">Quant</th>
+                                        <th scope="col">Valor Total</th>
+                                        <th scope="col">Data Pedido</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {
+                                        pedidos.map(ped => {
+                                        return (
+                                            <> 
+                                        <tr> 
+                                 
+                                            <th scope="row">{ped.id_pedido}</th>
+                                            <td>{ped.id_cliente} </td>
+                                            <td>{ped.id_prod} </td>
+                                            <td>{ped.nome_produto} </td>
+                                            <td>{ped.valor_unitario} </td>
+                                            <td>{ped.quantidade} </td>
+                                            <td>{ped.valor_total} </td>
+                                            <td>{ped.data_pedido} </td>
+                                    
+                                        </tr>
+                                        </>
+                                            )
+                                        })
+                                    }
+                                </tbody>
+                            
+                            </table>
+                        </div>
+                
+           
+        
+        </>
+    )
+}
+
+export default ListPedidos;
